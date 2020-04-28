@@ -1,23 +1,40 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import * as Highcharts from "highcharts";
+import { DashService } from './shared/dash.service';
+
+
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  // id:Array<{}>=[];
+  
+  constructor(public service: DashService) { }
+
+  ngOnInit(): void {
+    this.service.refreshList();
+    this.service.reg_orglist();
+    this.service.training();
+    // console.log(this.service.list);
+    // this.service.list.push({id:this.id});
+    // console.log(this.id);
+  }
+
   Highcharts = Highcharts;
   linechart = {
     series: [
       {
-        data: [1, 2, 3]
+        data: [1,2,3]
+      
       }
     ],
     chart: {
       type: "line"
     },
     title: {
-      text: "linechart"
+      text: "Active Users"
     }
   };
   barchart = {
@@ -30,7 +47,7 @@ export class AppComponent {
       type: "bar"
     },
     title: {
-      text: "barchart"
+      text: "Trending Trainings"
     }    
   };
 }

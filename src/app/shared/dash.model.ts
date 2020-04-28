@@ -1,5 +1,4 @@
-export class dash {
+export class Dash {
     id: number;
     username: string;
-    
 }
